@@ -1,0 +1,16 @@
+.DS_Store
+.vscode
+.idea
+.cursorrules
+.cursorignore
+.cursorignore
+
+bin/
+out/
+*.o
+*.exe
+*.exe.manifest
+*.exe.manifest.res
+*.exe.manifest.res.manifest
+*.exe.manifest.res.manifest.res
+*.exe.manifest.res.manifest.res.manifest
