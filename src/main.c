@@ -5,6 +5,7 @@
 #include "builtins.h"
 #include "utils/banner.h"
 #include "utils/donut.h"
+#include "utils/parse_command.h"
 
 int main(int argc, char **argv) {
   // Show startup animation and banner
@@ -28,7 +29,24 @@ int main(int argc, char **argv) {
       continue;
     }
 
-    builtins_init(input);
+    char *args[100];
+    int max_args = 100;
+    int parse_result = parse_command(input, args, max_args);
+    
+    if (parse_result == -1) {
+      printf("\033[38;5;208m%sError: Unterminated quote%s\n", "\033[1m", "\033[0m");
+      free(input);
+      continue;
+    }
+
+    if (builtins_init(args) == 1) {
+      printf("\033[38;5;208m%sUnknown command: %s%s\n", "\033[1m", input, "\033[0m");
+    }
+
+    // Clean up allocated memory for args
+    for (int j = 0; j < parse_result; j++) {
+      free(args[j]);
+    }
 
     free(input);
   }

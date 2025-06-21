@@ -2,4 +2,4 @@
 #include <stdlib.h>
 #include <string.h>
 
-void builtins_init(char *input);
+int builtins_init(char *args[]);
